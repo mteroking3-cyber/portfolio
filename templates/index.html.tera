@@ -39,7 +39,6 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-glitch" data-text="HELLO_WORLD">println!("HELLO_WORLD")</div>
-                <h1 class="hero-title1"></h1>
                 <h1 class="hero-title">
                     I'M <span class="text-gradient">{{ portfolio.name | upper }}</span>
                 </h1>
