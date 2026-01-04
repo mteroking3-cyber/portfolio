@@ -33,10 +33,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <!-- AI Assistant Button -->
-        <div class="ai-assistant" id="ai-assistant">
-            <i class="fas fa-robot"></i>
-        </div>
 
         <!-- Chat Window -->
         <div class="particles" id="particles"></div>
@@ -209,21 +205,45 @@
 
                     </div>
                 </div>
-                <form id="contactForm" class="contact-form" action="/contact" method="POST">
+                <form id="contactForm" class="contact-form">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-input" placeholder="YOUR_NAME" required>
+                        <input type="text" name="from_name" class="form-input" placeholder="YOUR_NAME" required>
                     </div>
+
                     <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="YOUR_EMAIL" required>
+                        <input type="email" name="from_email" class="form-input" placeholder="YOUR_EMAIL" required>
                     </div>
+
                     <div class="form-group">
                         <textarea name="message" class="form-input" placeholder="YOUR_MESSAGE" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitButton">
+
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> SEND MESSAGE
                     </button>
-                    <div id="formStatus" class="form-status"></div>
                 </form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_7acuigdm",
+        "template_ogw39uh",
+        this
+    ).then(
+        function() {
+            alert("Message sent successfully!");
+            document.getElementById("contactForm").reset();
+        },
+        function(error) {
+            alert("Failed to send message. Try again.");
+            console.error(error);
+        }
+    );
+});
+</script>
+
             </div>
         </div>
     </section>
@@ -257,6 +277,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-    
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("xQMfRRZKHcvIdWkhX");
+})();
+</script>
+
 </body>
 </html>

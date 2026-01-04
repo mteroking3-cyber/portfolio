@@ -156,22 +156,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function timeGreeting() {
-  const hour = new Date().getHours();
-  let message = "Welcome!";
-  if(hour < 12) message = "Good Morning! ☀️";
-  else if(hour < 18) message = "Good Afternoon! 🌤️";
-  else message = "Good Evening! 🌙";
-
-  const heroTitle = document.querySelector(".hero-title1");
-  if(heroTitle) heroTitle.textContent = message;
-
-  // Auto-switch theme
-  if(hour >= 18 || hour < 6) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-}
-
-timeGreeting();
