@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ portfolio.name }} - Futuristic Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body data-theme="dark" class="dark-mode-bg">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-glow">{{ portfolio.name | split(pat=" ") | first | upper }}</span>
+                <span class="logo-pulse">{{ portfolio.name | split(pat=" ") | last | upper }}</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+                <li><a href="#skills" class="nav-link">SKILLS</a></li>
+                <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <!-- AI Assistant Button -->
+        <div class="ai-assistant" id="ai-assistant">
+            <i class="fas fa-robot"></i>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="particles" id="particles"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-glitch" data-text="HELLO_WORLD">println!("HELLO_WORLD")</div>
+                <h1 class="hero-title1"></h1>
+                <h1 class="hero-title">
+                    I'M <span class="text-gradient">{{ portfolio.name | upper }}</span>
+                </h1>
+                <h2 class="hero-subtitle">
+                    {{ portfolio.title }}
+                </h2>
+                <p class="hero-description">
+                    {{ portfolio.about }}
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> VIEW WORK
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i> CONTACT ME
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="cyber-grid"></div>
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">
+                <span class="title-number">01</span>
+                ABOUT ME
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a passionate developer with expertise in cutting-edge technologies. I thrive on solving complex problems and creating innovative solutions that push boundaries.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">PROJECTS COMPLETED</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">YEARS EXPERIENCE</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">90%</span>
+                            <span class="stat-label">SATISFACTION</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span>bash — 80×24</span>
+                        </div>
+                        <div class="terminal-content">
+                            <p><span class="terminal-prompt">$ whoami</span></p>
+                            <p>{{ portfolio.name }} - {{ portfolio.title }}</p>
+                            <p><span class="terminal-prompt">$ skills --show</span></p>
+                            <p>{% for skill in portfolio.skills %}{{ skill }} | {% endfor %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="section-container">
+            <h2 class="section-title">
+                <span class="title-number">02</span>
+                TECH STACK
+            </h2>
+            <div class="skills-grid">
+                {% for skill in portfolio.skills %}
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-name">{{ skill }}</h3>
+                    <div class="skill-level">
+                        <div class="level-bar">
+                            <div class="level-progress" style="width: {{ 60 + loop.index0 * 4 }}%"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-container">
+            <h2 class="section-title">
+                <span class="title-number">03</span>
+                RECENT WORK
+            </h2>
+            <div class="projects-grid">
+                {% for project in portfolio.projects %}
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">{{ project.name }}</h3>
+                        <div class="project-links">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-technologies">
+                        {% for tech in project.technologies %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <h2 class="section-title">
+                <span class="title-number">04</span>
+                GET IN TOUCH
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>LET'S BUILD THE FUTURE TOGETHER</h3>
+                    <p>I'm always interested in new opportunities and exciting projects.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ portfolio.contact_email }}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Based in Bulawayo Zimbabwe - Digital Space</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>{{ portfolio.contact_number }}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form" action="/contact" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-input" placeholder="YOUR_NAME" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-input" placeholder="YOUR_EMAIL" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-input" placeholder="YOUR_MESSAGE" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitButton">
+                        <i class="fas fa-paper-plane"></i> SEND MESSAGE
+                    </button>
+                    <div id="formStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="futuristic-footer">
+        <div class="footer-container">
+            <p>&copy; 2025 {{ portfolio.name }}. Built with ACTIX WEB & deployed on RENDER</p>
+            <div class="footer-links">
+                <a href="https://github.com/mteroking3-cyber"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/keith-mutero-187690361/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/263717794958" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate particles
+    const particleContainer = document.getElementById('particles');
+    for(let i=0; i<50; i++){
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = Math.random()*100+'%';
+        particle.style.top = Math.random()*100+'%';
+        particle.style.width = (2 + Math.random()*3) + 'px';
+        particle.style.height = particle.style.width;
+        particleContainer.appendChild(particle);
+    }
+});
+</script>
+    
+</body>
+</html>
