@@ -254,7 +254,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
             <div class="footer-links">
                 <a href="https://github.com/mteroking3-cyber"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/keith-mutero-187690361/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/263717794958" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/263775074474" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
