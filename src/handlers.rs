@@ -29,7 +29,7 @@ struct Project {
 pub async fn index(tmpl: web::Data<Tera>) -> HttpResponse {
     let portfolio_data = PortfolioData {
         name: "Keith Mutero".to_string(),
-        title: "Full Stack Developer".to_string(),
+        title: "Artificial Intelligence".to_string(),
         about: "I’m a Full Stack Developer who builds high-performance, production-grade systems. I specialize in Rust-based and Python-based backends, scalable APIs, and modern frontends, turning complex requirements into clean, efficient, and reliable software. I don’t just write code I engineer solutions that last.".to_string(),
         skills: vec![
             "Docker".to_string(),
